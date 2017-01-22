@@ -1,0 +1,62 @@
+recycle
+recycles
+recyclable
+recyclables
+dishware
+metal
+paper
+aluminium
+cans
+metal
+jars
+bottle
+drinking water
+water
+juice
+glass
+plastic
+jugs
+electronics
+device
+foil
+tin
+tray
+tray
+mail
+cardboard
+newspaper
+newspapers
+magazines
+magazine
+cap
+lid
+paint can
+spray can
+steel can
+tin can
+bucket
+cd
+compact disk
+dvd
+cdrom
+case
+cup
+container
+container
+clamshell
+cork
+plate
+pots
+toy
+tubs
+utensil
+paper bag
+box
+paperboard
+computer
+office
+carton
+envelope
+phonebook
+sticky note
+
