@@ -1,2 +1,2 @@
 # wasteZero
-Uses Image Recognition to Sort Wastes to their Corresponding Categories
+Uses Image Recognition to Sort Wastes into their Corresponding Categories
