@@ -3,8 +3,29 @@ from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ListProperty
-from kivy.uix.label import Label
+from kivy.lang import Builder
 
+import os
+
+Builder.load_string("""
+<MyWidget>:
+    id: my_widget
+    Button
+        text: "open"
+        on_release: my_widget.open(filechooser.path, filechooser.selection)
+    FileChooserListView:
+        id: filechooser
+        on_selection: my_widget.selected(filechooser.selection)
+""")
+
+
+class MyWidget(BoxLayout):
+    def open(self, path, filename):
+        with open(os.path.join(path, filename[0]), 'r+') as f:
+            print(f.read())
+
+    def selected(self, filename):
+        print("selected: %s" % filename[0])
 
 
 class RootWidget(BoxLayout):
@@ -35,7 +56,7 @@ class CustomBtn(Widget):
 class TestApp(App):
 
     def build(self):
-        return RootWidget()
+        return MyWidget()
 
 
 if __name__ == '__main__':

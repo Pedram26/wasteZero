@@ -26,7 +26,24 @@ with open('landfill.txt', 'r+') as f:
     landfill = [x.lower() for x in landfill]
     landfill = [x.strip() for x in landfill]
 
-url = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTFPXRtq-D8ouFl3gZV88uT_0RzkI2xoL18jRhA-ng7H3zNVpky"
+# Strawberry
+url = """https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTFPXRtq-D8ouFl3gZV88uT_0RzkI2xoL18jRhA-
+    ng7H3zNVpky"""
+
+# Pen
+url2 = 'http://www.killercrossexamination.com/wp-content/uploads/2016/12/Blue-Bic-biro-pen.jpg'
+
+# Water Botlle
+url3 = "http://www.berkeleyside.com/wp-content/uploads/2011/03/plastic-water-bottle-281x360.jpg"
+
+# Broccoli
+url4 = "http://www.newkidscenter.com/images/10415723/broccoli.jpg"
+
+# Cigarrete
+url5 = "http://cdn.newsapi.com.au/image/v1/671c348120ffe64315ae2a67b627c98e?width=1024"
+
+# Spoon
+url6 = "https://upload.wikimedia.org/wikipedia/commons/3/32/Dessert_Spoon.jpg"
 
 
 def sortImage(url):
@@ -39,27 +56,48 @@ def sortImage(url):
     Returns:
         str: Image item's sorting category
     """
-    result = rapid.call('MicrosoftComputerVision', 'tagImage', {
-                        'subscriptionKey': '7bf3cea7fe0646ff83fddf20147a1fa5',
-                        'image': url
-                        })
-    data = json.loads(result)
-    pprint(data['tags'])
-    for i in range(len(data['tags'])):
-        if data['tags'][i]['name'] in compost:
-            print(data['tags'][i]['name'])
-            return ("This item goes to the compost bin.")
+    tagImage = rapid.call('MicrosoftComputerVision', 'tagImage', {
+                          'subscriptionKey':
+                          '7bf3cea7fe0646ff83fddf20147a1fa5',
+                          'image': url
+                          })
+
+    describeImage = rapid.call('MicrosoftComputerVision', 'describeImage', {
+                               'subscriptionKey':
+                               '7bf3cea7fe0646ff83fddf20147a1fa5',
+                               'image': url,
+                               'maxCandidates': ''
+                               })
+
+    tag = json.loads(tagImage)
+    describe = json.loads(describeImage)
+
+    pprint(tag['tags'])
+    pprint(describe['description']['captions'][0]['text'])
+    for i in range(len(tag['tags'])):
+        if tag['tags'][i]['name'] in compost:
+            print("ITEM: " + (tag['tags'][i]['name']).upper())
+            print("DESCRIPTION: " + describe['description']['captions'][0]
+                  ['text']
+                  ).upper()
+            return ("THIS ITEM GOES TO THE COMPOST BIN.")
             break
-        elif data['tags'][i]['name'] in recycable:
-            print(data['tags'][i]['name'])
-            return ("This item goes to the recycling bin.")
+        elif tag['tags'][i]['name'] in recycable:
+            print("ITEM: " + (tag['tags'][i]['name']).upper())
+            print("DESCRIPTION: " + describe['description']['captions'][0]
+                  ['text']
+                  ).upper()
+            return ("THIS ITEM GOES TO THE RECYCLING BIN.")
             break
-        elif data['tags'][i]['name'] in landfill:
-            print(data['tags'][i]['name'])
-            return ("This item goes to the landfill bin.")
+        elif tag['tags'][i]['name'] in landfill:
+            print("ITEM: " + (tag['tags'][i]['name']).upper())
+            print("DESCRIPTION: " + describe['description']['captions'][0]
+                  ['text']
+                  ).upper()
+            return ("THIS ITEM GOES TO THE LANDFILL BIN.")
             break
-        if i == len(data['tags']):
-            print("Item not Found")
+        if i == len(tag['tags']):
+            print("THIS ITEM GOES TO THE LANDFILL BIN.")
 
 
 print(sortImage(url))
