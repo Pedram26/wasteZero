@@ -7,8 +7,9 @@ import json
 app_dir = path.dirname(__file__)
 image_dir = path.join(app_dir, 'images')
 
+API_KEY = ''
 # rapidAPI Initialize
-rapid = RapidConnect('WasteZero', '158eb1cd-10fa-409b-b652-d0f9cd3e9ab3')
+rapid = RapidConnect('WasteZero', API_KEY)
 
 # Opening text files and spliting them into words
 with open('compost.txt', 'r+') as f:
@@ -45,6 +46,9 @@ url5 = "http://cdn.newsapi.com.au/image/v1/671c348120ffe64315ae2a67b627c98e?widt
 # Spoon
 url6 = "https://upload.wikimedia.org/wikipedia/commons/3/32/Dessert_Spoon.jpg"
 
+# Orange
+url7 = "https://d3nevzfk7ii3be.cloudfront.net/igi/rCjJcEgTAnWxY4Ck.large"
+
 
 def sortImage(url):
     """
@@ -58,13 +62,13 @@ def sortImage(url):
     """
     tagImage = rapid.call('MicrosoftComputerVision', 'tagImage', {
                           'subscriptionKey':
-                          '7bf3cea7fe0646ff83fddf20147a1fa5',
+                          API_KEY,
                           'image': url
                           })
 
     describeImage = rapid.call('MicrosoftComputerVision', 'describeImage', {
                                'subscriptionKey':
-                               '7bf3cea7fe0646ff83fddf20147a1fa5',
+                               API_KEY,
                                'image': url,
                                'maxCandidates': ''
                                })
@@ -100,4 +104,4 @@ def sortImage(url):
             print("THIS ITEM GOES TO THE LANDFILL BIN.")
 
 
-print(sortImage(url))
+print(sortImage("https://d3nevzfk7ii3be.cloudfront.net/igi/rCjJcEgTAnWxY4Ck.large"))
