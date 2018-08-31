@@ -27,28 +27,6 @@ with open('landfill.txt', 'r+') as f:
     landfill = [x.lower() for x in landfill]
     landfill = [x.strip() for x in landfill]
 
-# Strawberry
-url = """https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTFPXRtq-D8ouFl3gZV88uT_0RzkI2xoL18jRhA-
-    ng7H3zNVpky"""
-
-# Pen
-url2 = 'http://www.killercrossexamination.com/wp-content/uploads/2016/12/Blue-Bic-biro-pen.jpg'
-
-# Water Botlle
-url3 = "http://www.berkeleyside.com/wp-content/uploads/2011/03/plastic-water-bottle-281x360.jpg"
-
-# Broccoli
-url4 = "http://www.newkidscenter.com/images/10415723/broccoli.jpg"
-
-# Cigarrete
-url5 = "http://cdn.newsapi.com.au/image/v1/671c348120ffe64315ae2a67b627c98e?width=1024"
-
-# Spoon
-url6 = "https://upload.wikimedia.org/wikipedia/commons/3/32/Dessert_Spoon.jpg"
-
-# Orange
-url7 = "https://d3nevzfk7ii3be.cloudfront.net/igi/rCjJcEgTAnWxY4Ck.large"
-
 
 def sortImage(url):
     """
@@ -102,6 +80,3 @@ def sortImage(url):
             break
         if i == len(tag['tags']):
             print("THIS ITEM GOES TO THE LANDFILL BIN.")
-
-
-print(sortImage("https://d3nevzfk7ii3be.cloudfront.net/igi/rCjJcEgTAnWxY4Ck.large"))
