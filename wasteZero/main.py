@@ -7,7 +7,7 @@ import json
 app_dir = path.dirname(__file__)
 image_dir = path.join(app_dir, 'images')
 
-API_KEY = ''
+API_KEY = "########"
 # rapidAPI Initialize
 rapid = RapidConnect('WasteZero', API_KEY)
 
